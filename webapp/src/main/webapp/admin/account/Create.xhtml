@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <style>
+        .cust tr, .cust td {
+            border:0 !important;
+                            }
+    </style>
+    <p:dialog header="Create New Account" widgetVar="newAccountDialog" resizable="false" width="700" id="newAccountDlg"  onShow="#{accountController.prepareCreate()}" > 
+              <h:form id="newAccountForm">
+                <p:panelGrid id="displayNewUser" columns="2"   style="margin:0 auto;width: 660px;border: none;">   
+                    <h:outputText value="Account Id :"></h:outputText>
+                     <h:outputText value="#{accountController.maxId}"></h:outputText>   
+
+			<h:outputText value="Login :"></h:outputText>
+                        <p:inputText value="#{accountController.newAccount.accLogin}" required="true" requiredMessage="Please Enter Login!" />
+
+                        <h:outputText value="Password :"></h:outputText>
+                        <p:password value="#{accountController.newAccount.accPassword}"/>
+                        
+                        <h:outputText value="Role :"/>
+                        <p:panelGrid columns="2"  styleClass="cust">
+                        <h:outputText id="role_name" value="#{accountController.newAccount.idRole.name}"/>
+                        <p:commandButton value="" oncomplete="roleDialog.show()" actionListener="#{roleController.prepareList}" icon="ui-icon-search" style="height: 30px; width: 30px;"/>
+                        </p:panelGrid>
+                        
+                        <h:outputText value="User :"/>
+                         <p:panelGrid columns="2"  styleClass="cust">
+                             <h:outputText id="user_cin" value="#{accountController.newAccount.idUser.cin}"/>
+                        <p:commandButton value="" oncomplete="userDialog.show()" actionListener="#{userController.prepareList}" icon="ui-icon-search" style="height: 30px; width: 30px;"/>
+                        </p:panelGrid>
+                        
+                        
+                        <f:facet name="footer">
+                            <p:commandButton value="Submit" icon="ui-icon-circle-check" update=":form1:dataTable, :form1:growl"  actionListener="#{accountController.Create}" oncomplete="@this.hide()"/>
+                            <p:commandButton type="reset" value="Reset"></p:commandButton>                            
+                    </f:facet>
+                </p:panelGrid>  
+              </h:form>
+          </p:dialog> 
+    
+    
+    
+    <p:dialog header="Select Role" widgetVar="roleDialog" resizable="false" id="roleDlg" width="600" >
+        
+         <ui:include src="./role_datatable.xhtml"/>
+         
+        
+         <f:facet name="footer">
+             <h:form> 
+                 <p:commandButton value="select" icon="ui-icon-check" update=":newAccountForm:role_name" actionListener="#{accountController.validate_role_selection}" oncomplete="roleDialog.hide()" />
+             </h:form>
+         </f:facet>
+        
+        
+        
+    </p:dialog> 
+    
+    
+    <p:dialog header="Select User" widgetVar="userDialog" resizable="false" id="userDlg" width="600" >
+        
+         <ui:include src="./user_datatable.xhtml"/>
+         
+        
+         <f:facet name="footer">
+             <h:form> 
+                 <p:commandButton value="select" icon="ui-icon-check" update=":newAccountForm:user_cin" actionListener="#{accountController.validate_user_selection}" oncomplete="userDialog.hide()" />
+             </h:form>
+         </f:facet>
+        
+        
+        
+    </p:dialog>  
+    
+    
+    
+    
+<script type="text/javascript">  
+    function handleSubmitRequest(xhr, status, args, dialogName, formName) {  
+            dialog = jQuery('#'+dialogName);
+        if(args.validationFailed) {  
+            dialog.effect("shake", { times:3 }, 100);  
+        } else {
+            clearForm(formName);
+            newAccountDialog.hide(); 
+            newAccountDialog.hide(); 
+        }  
+    }
+    function clearForm(formName){
+        jQuery('#'+formName).each(function(){
+	        this.reset();
+	});
+    }
+</script> 
+                   
+
+    
+   
+   
+   
+    
+    
+</ui:composition>

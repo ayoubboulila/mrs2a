@@ -6,8 +6,15 @@
 
 package com.mrs2a.test;
 
+import com.mrs2a.entities.Account;
+import com.mrs2a.entities.Role;
+import com.mrs2a.entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +25,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Snoopy
  */
-@WebServlet(name = "testAccountServlet", urlPatterns = {"/testAccountServlet"})
-public class testAccountServlet extends HttpServlet {
+@WebServlet(name = "testAccountFacade", urlPatterns = {"/testAccountFacade"})
+public class testAccountFacade extends HttpServlet {
+    @EJB
+    private com.mrs2a.sessionBeans.AccountFacadeLocal accountFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,15 +47,31 @@ public class testAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet testAccountServlet</title>");            
+            out.println("<title>Servlet testAccountFacade</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet testAccountServlet at " + request.getContextPath() + "</h1>");
+            out.println(test());
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+    
+    public User test(){
+        
+        try{
+            Account acc=accountFacade.DoLogin("1", "1");
+            User user=acc.getIdUser();
+            Role role=acc.getIdRole();
+            
+            return user;
+        }catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e.getMessage());
+            throw new RuntimeException(e);
+        }
+        
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

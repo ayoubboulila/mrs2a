@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+ 
+    
+    
+    <p:dataTable id="dataTable_user" var="user" value="#{userController.users}" 
+                 paginator="true" rows="10" selection="#{userController.selectedUser}"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="false" rowsPerPageTemplate="10,15,50" 
+                        selectionMode="single" rowKey="#{user.idUser}" paginatorPosition="bottom"
+                        style="margin-left:  15px; margin-right: 15px;margin-top: 10px;" widgetVar="list1">
+                <f:facet name="header">
+                    Roles List
+                </f:facet>  
+               
+
+        <p:column sortBy="#{user.idUser}">
+                    <f:facet name="header">
+                        <h:outputText value="Id" />
+                    </f:facet>
+            <h:outputText value="#{user.idUser}" />
+                </p:column>
+                
+        <p:column sortBy="#{user.cin}">
+                    <f:facet name="header">
+                        <h:outputText value="CIN" />
+                    </f:facet>
+            <h:outputText value="#{user.cin}" />
+                </p:column>
+       
+        <p:column sortBy="#{user.firstName}">
+                    <f:facet name="header">
+                        <h:outputText value="First Name" />
+                    </f:facet>
+            <h:outputText value="#{user.firstName}" />
+                </p:column>
+        
+        <p:column sortBy="#{user.lastName}">
+                    <f:facet name="header">
+                        <h:outputText value="Last Name" />
+                    </f:facet>
+            <h:outputText value="#{user.lastName}" />
+                </p:column>
+        
+        <p:column sortBy="#{user.address}">
+                    <f:facet name="header">
+                        <h:outputText value="Address" />
+                    </f:facet>
+            <h:outputText value="#{user.address}" />
+                </p:column> 
+        
+        <p:ajax event="rowSelect" listener="#{accountController.affect_user}" />
+               <f:facet name="footer">
+                   
+               
+               </f:facet>
+            </p:dataTable>
+
+</ui:composition>

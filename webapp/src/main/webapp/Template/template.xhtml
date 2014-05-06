@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <h:outputStylesheet name="./css/default.css"/>
+       <!--  <h:outputStylesheet name="./css/cssLayout.css"/>-->
+        <title>Facelets Template</title>
+         <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+
+    </h:head>
+
+    <h:body>
+        <style>
+/*                 .ui-layout-north .ui-layout-unit-content {
+border: none;
+padding: 0 0 0 0;
+margin: 0 0 0 ;
+overflow: hidden;
+}
+.ui-layout-unit-center {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+z-index: -1;
+}
+
+.ui-layout .ui-layout-noscroll div.ui-layout-bd {
+overflow: visible;
+} */
+
+ 
+          
+                
+      </style>
+         <p:layout fullPage="true">
+            
+             <p:layoutUnit transient="true" position="north" size="100"  >
+              
+                 <ui:insert name="header"> 
+                        <h:form>
+                            
+                           
+                            
+                                              
+<!--                                <p:tabMenu activeIndex="0" style=" margin-top :55px;">  
+    <p:menuitem value="Home"  url="/jsf/admin/home.xhtml" icon="ui-icon-home"/>  
+    <p:menuitem value="Accounts"  url="/jsf/admin/account/List.xhtml" icon="ui-icon-key"/>
+    <p:menuitem value="Logout" url="/jsf/admin/account/List.xhtml" />
+
+    
+     <f:facet name="options">  
+            <p:inputText style="margin-right:10px"/>  
+            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+        </f:facet>
+                                
+                                </p:tabMenu> -->
+                             
+<p:menubar style="margin-top: 50px;" >  
+        <p:submenu label="File" icon="ui-icon-document">  
+            <p:submenu label="New" icon="ui-icon-contact">  
+                <p:menuitem  value="Project" url="#" />  
+                <p:menuitem value="Other" url="#" />  
+            </p:submenu>  
+            <p:menuitem value="Open" url="#" />  
+            <p:separator />  
+            <p:menuitem value="Quit" url="#" />  
+        </p:submenu>  
+  
+        <p:submenu label="Edit" icon="ui-icon-pencil">  
+            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />  
+            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />  
+        </p:submenu>  
+  
+        <p:submenu label="Help" icon="ui-icon-help">  
+            <p:menuitem value="Contents" url="#" />  
+            <p:submenu label="Search" icon="ui-icon-search">  
+                <p:submenu label="Text">  
+                    <p:menuitem value="Workspace" url="#" />  
+                </p:submenu>  
+                <p:menuitem value="File" url="#" />  
+            </p:submenu>  
+        </p:submenu>  
+  
+        
+  
+        <p:menuitem value="Quit" url="http://www.primefaces.org" icon="ui-icon-close" />  
+  
+        <f:facet name="options">  
+            <p:inputText style="margin-right:10px"/>  
+            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />  
+        </f:facet>  
+    </p:menubar>  
+
+                        </h:form>
+                    
+                    </ui:insert>
+              
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    <ui:insert name="footer">
+                       <h:form>
+                        <p:outputLabel value="Gestion Patient 2014 ~ Tous droits réservés Mrs2@" style="margin-left: 400px;"/>
+                       </h:form>
+                    </ui:insert>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="245" header="Left" collapsible="true">
+                   <h:form>
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Home" url="#" />
+                          
+                        </p:submenu>
+
+                    </p:menu>
+                   </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <ui:insert name="content">Content</ui:insert>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        
+       
+        
+    </h:body>
+    </f:view>
+</html>

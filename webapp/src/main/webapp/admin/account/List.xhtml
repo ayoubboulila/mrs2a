@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../Template/template.xhtml">
+
+           
+
+            <ui:define name="content">
+                <h:form id="form1">
+                    <p:growl id="growl" showDetail="true" life="5000" />
+
+                <p:dataTable id="dataTable" var="account" value="#{accountController.accounts}" 
+                             paginator="true" rows="10" selection="#{accountController.selectedAccounts}"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="false" rowsPerPageTemplate="10,15,50" paginatorPosition="bottom"
+                        rowKey="#{account.idAccount}"
+                        style="margin-left:  15px; margin-right: 15px;margin-top: 10px;" widgetVar="list">
+                <f:facet name="header">
+                    Account List
+                </f:facet>  
+               
+<p:column selectionMode="multiple" style="width:18px" /> 
+                <p:column sortBy="#{account.idAccount}">
+                    <f:facet name="header">
+                        <h:outputText value="Id" />
+                    </f:facet>
+                        <h:outputText value="#{account.idAccount}" />
+                </p:column>
+                
+                <p:column sortBy="#{account.accLogin}">
+                    <f:facet name="header">
+                        <h:outputText value="Login" />
+                    </f:facet>
+                        <h:outputText value="#{account.accLogin}" />
+                </p:column>
+                
+                
+                    <p:column sortBy="#{account.idRole.name}">
+                    <f:facet name="header">
+                        <h:outputText value="Role" />
+                    </f:facet>
+                        <h:outputText value="#{account.idRole.name}" />
+                </p:column>
+                    <p:column sortBy="#{account.idUser.firstName}">
+                    <f:facet name="header">
+                        <h:outputText value="User" />
+                    </f:facet>
+                        <h:outputText value="#{account.idUser.firstName}" />
+                        <h:outputText value="#{account.idUser.lastName}" />
+                </p:column>
+<p:ajax event="rowSelect" listener="#{accountController.prepareEdit}" />
+               <f:facet name="footer">
+                   <p:commandButton value="New Account" actionListener="#{accountController.prepareCreate()}" oncomplete="newAccountDialog.show()" icon="ui-icon-plus" title="Creates new account"/>
+<!--                    <p:commandButton value="Delete Users"  update="dataTable" icon="ui-icon-trash"/>-->
+                </f:facet>
+            </p:dataTable>
+
+</h:form>
+
+
+		
+   <ui:include src="./Create.xhtml"/>
+
+
+                
+            </ui:define>
+
+        </ui:composition>
+        
+        
+
+
+
+
+
+         
+    </body>
+</html>
