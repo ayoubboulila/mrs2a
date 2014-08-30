@@ -194,11 +194,14 @@ public void validate_user_selection(ActionEvent actionevent){
 }
 
 public void prepareEdit(){
-    Logger.getLogger(getClass().getName()).log(Level.INFO,"prepare_edit selected accounts {0}",selectedAccounts.length);
-    int index=selectedAccounts.length-1;
-    selectedAccount=selectedAccounts[index];  
+     Logger.getLogger(getClass().getName()).log(Level.INFO,"prepare_edit selected accounts {0}",selectedAccounts.length);
+     int index=selectedAccounts.length-1;
+     selectedAccount=selectedAccounts[index];  
 }
 
+public void meriem(){
+	//hhggh
+}
 
 
 
