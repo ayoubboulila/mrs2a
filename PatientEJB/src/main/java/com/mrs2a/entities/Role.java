@@ -86,9 +86,7 @@ public class Role implements Serializable {
         hash += (idRole != null ? idRole.hashCode() : 0);
         return hash;
     }
-   public void houcem(){
-	   
-	   
+   public void houcem(){ 
      	//tiitititititit
     }
     @Override
