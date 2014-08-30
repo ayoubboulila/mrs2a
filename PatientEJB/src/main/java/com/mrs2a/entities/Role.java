@@ -82,11 +82,13 @@ public class Role implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
+    	 int hash = 0;
         hash += (idRole != null ? idRole.hashCode() : 0);
         return hash;
     }
-
+   public void houcem(){
+     	//tiitititititit
+    }
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
